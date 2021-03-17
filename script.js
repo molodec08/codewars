@@ -1,21 +1,24 @@
-//kata https://www.codewars.com/kata/59d398bb86a6fdf100000031
+//kata https://www.codewars.com/kata/5594463eaf1701909c0000d4
 
-const a = 'This is an example string';
-const b = 'xswe6mzw3626ymq5ulkh5k0c62ozbhi7z599730qbkpnq57pi'
-const c = 'kcznibwdf9gf4yoof0wltyovalkfgzvq315hb7016fvfqhn'
+const a = [1, 2, [3, 4], [5, 6]]
 
-function stringBreakers(n, string){
-  let result = [];
-  let arr = []
-  for(let i = 0; i < (string.length/n); i++) {
-    arr = [...arr, [...string]
-      .filter(el => el != ' ')
-      .slice((i*n),(i*n)+n)];
-    result.push(arr[i].join(''));
-  }
-  return result.join('\n');
+function arraySum(arr) {
+  let resultArr = [];
+  arr.forEach((item) => {
+    if (Array.isArray(item)){
+      resultArr = resultArr.concat(...item);
+    } else if (typeof item == "number") {
+      resultArr = resultArr.concat(item);
+    }
+  });
+  return resultArr.reduce((prev, cur) => {
+    return prev + cur;
+  });
 }
 
-stringBreakers(5, a);
-stringBreakers(8, b);
-stringBreakers(1, c);
+arraySum(a);
+
+arraySum([1, 2]);
+arraySum([1, 2, 3]);
+arraySum([1, 2, [1, 2]]);
+arraySum('3pig3');
